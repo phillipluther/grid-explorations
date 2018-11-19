@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>8pt Hard Grid w/4pt Text Baseline</title>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+
+    <body>
+        <div class="toggles">
+            <button class="toggle-grid-8pt" type="button">8pt Grid Lines</button>
+            <button class="toggle-grid-4pt" type="button">Text Baselines</button>
+            <button class="toggle-lineHeight" type="button">Line Height Markers</button>
+        </div>
+
+        <div class="grid-4pt"></div>
+        <div class="grid-8pt"></div>
+
+        <main class="container xshow-lineHeights">
+            <header class="header">
+                <h1>8pt Hard Grid with 4pt Text Baseline</h1>
+                <p>
+                    This is a super-simplified implementation of a grid system to demonstrate the
+                    basic concepts. Element spacing, margins/padding, and line heights snap to an 8pt
+                    grid; text baselines snap to a 4pt vertical grid.
+                </p>
+            </header>
+            <section>
+                <h2 class="heading-4">So this Grid Demo Thing</h2>
+                <blockquote>
+                    This is so UGLY! Why is this font this way? Why is that margin that way? I found
+                    one thing I don't care for, negating everything you say from this point on.
+                </blockquote>
+                <cite>- Top Ultrapro Designer (link to dribbble)</cite>
+                <p>
+                    It's a demo. It is not robust, nor complete, nor a plug-and-play system ready for
+                    anybody to pick up and start app'ing. The demo CSS includes only the stuff needed
+                    to demonstrate a few points and start discussions.
+                </p>
+                <p>
+                    That said, the basics are in place. Nothing is fudged or cheated. It's a strict
+                    8pt/4pt grid.
+                </p>
+                <p>
+                    If you're not diggin' the choices I made RE: margins or font-sizes, you're
+                    welcome to pop open your browser's inspector and modify them. I'd encourage
+                    that, actually, to see how it improves or breaks the grid.
+                </p>
+
+                <h3 class="heading-4">And Actually, While We're Making Caveats ...</h3>
+                <p>
+                    You'll notice the text baselines can be 1px off above/below the text's rendered
+                    baseline. For simplicity, I'm using system fonts. Good ol' <strong>sans-serif</strong>
+                    and <strong>serif</strong>. I have no idea what those fonts might be or how they
+                    might render on your system.
+                </p>
+                <p>
+                    Also as mentioned, I didn't fudge any of the numbers. Another way of saying it,
+                    I didn't <em>finesse</em> any of the numbers. Given time it's entirely possible
+                    to fine tune those 1px oddities and make everything snap exactly to the baseline
+                    grid.
+                </p>
+            </section>
+
+            <section>
+                <h2>Key CSS Callouts</h2>
+                <p>
+                    This is an 8pt grid at a 1x pixel ratio; that's a high-falutin' way of saying
+                    it's an 8 pixel grid. Everything - margins, padding, widths, heights (including
+                    line heights) - occur as multiples of 8px.
+                </p>
+
+                <h3 class="heading-4">Considerations</h3>
+                <ul>
+                    <li>Font size doesn't affect the grid; line-height does</li>
+                    <li>
+                        I don't want my grid to break if a user changes their base font size; that's
+                        not via CMD+/CTRL+, mind you, but if they actually set their font size to
+                        something different than the browser default of 16px. This is a web
+                        accessibility consideration.
+                    </li>
+                </ul>
+
+
+                <section>
+                    <h3>Base/Default Font Size</h3>
+                    <p>
+                        The first thing I did was set my base font-size, as it'll serve as the basis
+                        for doing <em>all</em> other grid calculations.
+                    </p>
+                    <pre><code>html { font-size: 1em; }</code></pre>
+                    <p><strong><em>NOTE:</em></strong></p>
+                    <p>
+                        All browsers that matter use 16px as their default (unstyled) font size. I
+                        set the base font-size to 1em, effectively saying, "Use the browser default,
+                        which is probably 16px, to create the rest of our grid."
+                    </p>
+                    <p>
+                        So yes - this could end up being a grid that's not based on 8px if a user
+                        sets their default font size to something bigger or smaller. This is an
+                        accessibility consideration.
+                    </p>
+                    <p>
+                        Even if the default font size changes, though, everything will still grid
+                        properly - just at a larger or smaller scale. Eg., a user sets his/her
+                        default font size to 24px because s/he has trouble reading small print. That
+                        user will get a 12px grid.
+                    </p>
+                </section>
+
+                <section>
+                    <h3>Base/Default Line-height</h3>
+                    <p>
+                        Great. We've got a base font size that'll act as our primary unit of
+                        measurement.
+                </section>
+            </section>
+        </main>
+
+        <script src="scripts.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        <script>
+            hljs.initHighlightingOnLoad();
+        </script>
+    </body>
+</html>
