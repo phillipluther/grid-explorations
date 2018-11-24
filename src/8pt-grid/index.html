@@ -200,26 +200,29 @@ p {
 &lt;/style&gt;
 
 &lt;div class="biggerFont"&gt;
-    &lt;div clsas="remSizePadding"&gt; &lt;!-- 32px padding (Base x 2)--&gt;
-        Padded using rems
-    &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class="biggerFont"&gt;
     &lt;div class="emSizePadding"&gt; &lt;!-- 40px padding (Bigger font x 2)--&gt;
         Padded using ems
     &lt;/div&gt;
 &lt;/div&gt;
-</code></pre>
-                <!-- <div style="font-size:20px;">
-                    <div class="demo-block neutral" style="padding:2rem;">
-                        <span class="lineHeight">Padded using rems</span>
-                    </div>
-                    <div class="demo-block neutral" style="padding:2em;">
-                        <span class="lineHeight">Padded using ems</span>
-                    </div>
-                </div> -->
 
+&lt;div class="biggerFont"&gt;
+    &lt;div clsas="remSizePadding"&gt; &lt;!-- 32px padding (Base x 2)--&gt;
+        Padded using rems
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                <div class="flex" style="font-size:20px;">
+                    <div class="demo-block bad">
+                        <div style="padding:2em;background:white;">
+                            <span class="lineHeight">Padded using ems</span>
+                        </div>
+                    </div>
+                    <div class="demo-block good">
+                        <div style="padding:2rem;background:white;">
+                            <span class="lineHeight">Padded using rems</span>
+                        </div>
+                    </div>
+                </div>
                 <p>
                     Ems start to get complicated when nesting containers since we have to be aware
                     of values other than our base unit. If we're creating helper or utility classes
