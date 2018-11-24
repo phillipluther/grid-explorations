@@ -17,25 +17,98 @@
         <div class="grid-4pt"></div>
         <div class="grid-8pt"></div>
 
-        <main class="container xshow-lineHeights">
+        <main class="container">
             <header class="header">
                 <h1>8pt Hard Grid with 4pt Text Baseline</h1>
                 <p>
-                    This is a super-simplified implementation of a grid system to demonstrate the
-                    basic concepts. Element spacing, margins/padding, and line heights snap to an 8pt
+                    This is a quick implementation of a grid system to demonstrate the basic
+                    concepts. Element spacing, margins/padding, and line heights snap to an 8pt
                     grid; text baselines snap to a 4pt vertical grid.
                 </p>
             </header>
+
             <section>
-                <h2 class="heading-4">So this Grid Demo Thing</h2>
+                <h2>The High Level Stuff</h2>
+                <p>
+                    We're making an 8pt hard grid at a 1x pixel ratio (8pt @1x). That's a high-
+                    falutin' way of saying, "It's an 8px grid." We call it "hard" because every
+                    container must snap to our grid lines, both horizontally and vertically.
+                </p>
+                <p>
+                    Our system will also include a 4pt vertical grid (also @1x ... so 4px) for
+                    aligning text baselines. Think of this as a "sub" grid that applies only to
+                    typography. The overall size of text blocks will snap to the 8px grid, but
+                    <em>lines</em> of text get baselined to 4px increments instead of 8.
+                </p>
+                <p>
+                    We'll dig into these things later, but to start we'll need to define some rules
+                    governing the grid.
+                </p>
+
+                <h3>Our Rules</h3>
+                <p>
+                    As this is an exploration/experiment, we'll embrace dogma. In practical
+                    application we'd likely finesse (aka, break) some of these rules for aesthetic
+                    reasons, but we can only do that after getting a handle on the basics so we know
+                    how tinkering with measurements affects our grid.
+                </p>
+                <p>For this demo, incontrovertibly:</p>
+                <ul>
+                    <li class="lineHeight">
+                        All containers - banners, cards, text blocks, tables, etc. - must be sized
+                        such that they snap to the 8px grid.
+                    </li>
+                    <li class="lineHeight">
+                        All text baselines - paragraphs, headings, footnotes - must baseline to the
+                        4px sub-grid.
+                    </li>
+                    <li class="lineHeight">
+                        All distances - widths, heights (including line heights), margins, padding,
+                        etc. - must render as multiples of 8. That's effectively our hard grid.
+                    </li>
+                    <li class="lineHeight">
+                        Negative space between items - columns, text blocks, images, etc. -
+                        must render as a multiple of 8. Again, hard grid.
+                    </li>
+                    <li>
+                        <p>
+                            "Regular" fonts will be two-thirds (0.6667) the height of their line
+                            height, resulting in 1.5 leading. This snaps them to the 4pt text
+                            baseline.
+                        </p>
+<pre><code class="css">
+line-height: 24px;
+font-size: 16px; /* 24 * 0.6667 = 16 */
+/* We could also do this math as 24 / 1.5 = 16 */
+</code></pre>
+                    </li>
+                    <li>
+                        <p>
+                            Headings will be 80% the height of their line height, resulting in 1.25
+                            leading. This snaps them to the 4pt text baseline.
+                        </p>
+<pre><code class="css">
+line-height: 40px;
+font-size: 32px; /* 40 * 0.8 = 32 */
+/* We could also do this math as 40 / 1.25 = 32 */
+</code></pre>
+                    </li>
+                </ul>
+                <p>
+                    <strong>NOTE:</strong> We're not actually going to using explicit pixel values
+                    to set our font sizes and line heights, opting for rems instead. We'll get into
+                    this later; for now, just know the above CSS examples are for clarity.
+                </p>
+
+                <h3>Our Disclaimers</h3>
                 <blockquote>
                     This is so UGLY! Why is this font this way? Why is that margin that way? I found
                     one thing I don't care for, negating everything you say from this point on.
                 </blockquote>
                 <cite>- Top Ultrapro Designer (link to dribbble)</cite>
                 <p>
-                    It's a demo. It is not robust, nor complete, nor a plug-and-play system ready for
-                    anybody to pick up and start app'ing. The demo CSS includes only the stuff needed
+                    This is a demo. It is not robust, nor complete, nor a plug-and-play system ready
+                    for anybody to pick up and start app'ing. Our CSS only includes stuff we need
                     to demonstrate a few points and start discussions.
                 </p>
                 <p>
@@ -43,78 +116,140 @@
                     8pt/4pt grid.
                 </p>
                 <p>
-                    If you're not diggin' the choices I made RE: margins or font-sizes, you're
-                    welcome to pop open your browser's inspector and modify them. I'd encourage
-                    that, actually, to see how it improves or breaks the grid.
+                    If you're not diggin' the choices made RE: margins or font-sizes, you're
+                    welcome to pop open your browser's inspector and modify them. That's encouraged,
+                    in fact, to see how it improves or breaks the grid.
                 </p>
 
-                <h3 class="heading-4">And Actually, While We're Making Caveats ...</h3>
+                <h4>And Actually, While We're Making Caveats ...</h4>
+                <p>Here's a quick warning for the absolutists out there.</p>
                 <p>
-                    You'll notice the text baselines can be 1px off above/below the text's rendered
-                    baseline. For simplicity, I'm using system fonts. Good ol' <strong>sans-serif</strong>
+                    You'll notice rendered text might be 1px above/below the text baseline grid.
+                    For simplicity, I'm using system fonts. Good ol' <strong>sans-serif</strong>
                     and <strong>serif</strong>. I have no idea what those fonts might be or how they
                     might render on your system.
                 </p>
                 <p>
-                    Also as mentioned, I didn't fudge any of the numbers. Another way of saying it,
-                    I didn't <em>finesse</em> any of the numbers. Given time it's entirely possible
-                    to fine tune those 1px oddities and make everything snap exactly to the baseline
-                    grid.
+                    Since every font has a different x-height, it's tough (impossible?) to create
+                    a universal hard grid that works <em>perfectly</em> for every font face. Those
+                    1px oddities can be overcome by finessing the numbers for <em>your</em> specific
+                    fonts, but calling back to our dogma - we're taking the simple, purist approach
+                    because this is just a demo.
                 </p>
             </section>
 
             <section>
-                <h2>Key CSS Callouts</h2>
+                <h2>Px It, Rem It, or Em It</h2>
                 <p>
-                    This is an 8pt grid at a 1x pixel ratio; that's a high-falutin' way of saying
-                    it's an 8 pixel grid. Everything - margins, padding, widths, heights (including
-                    line heights) - occur as multiples of 8px.
+                    This demo uses rems for all measurements because it simplifies things
+                    significantly. We've set our base font size to 16px (kinda ... more on that
+                    later), and all rem values will reference that base 16.
+                </p>
+<pre><code class="css">
+html { font-size: 1em; }
+/* all browsers that matter default their font size to 16px */
+</code></pre>
+                <p>
+                    16 happens to scale beautifully by 8, and hey! We've got an 8px grid! Groovy.
+                </p>
+                <p>
+                    Managing spacing and distance in our CSS is a breeze since we'll only ever be
+                    dealing with 0.5 rem increments - 8px under the hood. If something isn't
+                    divisible by 0.5 rems, it ain't hard gridded.
+                </p>
+<pre><code class="css">
+.my-div {
+    padding: 1rem; /* 16px all the way 'round */
+    margin: 2rem 0; /* 32px on the top and bottom */
+}
+
+p {
+    line-height: 1.5rem; /* 24px */
+}
+</code></pre>
+                <p>
+                    Also, since everything is a relative unit we could theoretically change our
+                    entire grid by simply updating the base unit. Want a 10px grid instead of 8?
+                    Swap that HTML font size from 16px to 20px and all those rems will handle the
+                    rest.
                 </p>
 
-                <h3 class="heading-4">Considerations</h3>
-                <ul>
-                    <li>Font size doesn't affect the grid; line-height does</li>
-                    <li>
-                        I don't want my grid to break if a user changes their base font size; that's
-                        not via CMD+/CTRL+, mind you, but if they actually set their font size to
-                        something different than the browser default of 16px. This is a web
-                        accessibility consideration.
-                    </li>
-                </ul>
+                <h3>Why Not Ems?</h3>
+                <p>
+                    We could use ems to achieve the same results as with rems, though the math gets
+                    a little trickier. Rem'ed values derive their size from our base font size;
+                    em'ed values get their size relative to their parent container's font.
+                </p>
+<pre><code class="html">
+&lt;style&gt;
+    html { font-size: 16px; } /* base */
+    .biggerFont { font-size: 20px; } /* scaled up */
+    /* again, using px value for demo clarity */
 
+    .emSizePadding { padding: 2em; }
+    .remSizePadding { padding: 2rem; }
+&lt;/style&gt;
 
-                <section>
-                    <h3>Base/Default Font Size</h3>
-                    <p>
-                        The first thing I did was set my base font-size, as it'll serve as the basis
-                        for doing <em>all</em> other grid calculations.
-                    </p>
-                    <pre><code>html { font-size: 1em; }</code></pre>
-                    <p><strong><em>NOTE:</em></strong></p>
-                    <p>
-                        All browsers that matter use 16px as their default (unstyled) font size. I
-                        set the base font-size to 1em, effectively saying, "Use the browser default,
-                        which is probably 16px, to create the rest of our grid."
-                    </p>
-                    <p>
-                        So yes - this could end up being a grid that's not based on 8px if a user
-                        sets their default font size to something bigger or smaller. This is an
-                        accessibility consideration.
-                    </p>
-                    <p>
-                        Even if the default font size changes, though, everything will still grid
-                        properly - just at a larger or smaller scale. Eg., a user sets his/her
-                        default font size to 24px because s/he has trouble reading small print. That
-                        user will get a 12px grid.
-                    </p>
-                </section>
+&lt;div class="biggerFont"&gt;
+    &lt;div clsas="remSizePadding"&gt; &lt;!-- 32px padding (Base x 2)--&gt;
+        Padded using rems
+    &lt;/div&gt;
+&lt;/div&gt;
 
-                <section>
-                    <h3>Base/Default Line-height</h3>
-                    <p>
-                        Great. We've got a base font size that'll act as our primary unit of
-                        measurement.
-                </section>
+&lt;div class="biggerFont"&gt;
+    &lt;div class="emSizePadding"&gt; &lt;!-- 40px padding (Bigger font x 2)--&gt;
+        Padded using ems
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                <!-- <div style="font-size:20px;">
+                    <div class="demo-block neutral" style="padding:2rem;">
+                        <span class="lineHeight">Padded using rems</span>
+                    </div>
+                    <div class="demo-block neutral" style="padding:2em;">
+                        <span class="lineHeight">Padded using ems</span>
+                    </div>
+                </div> -->
+
+                <p>
+                    Ems start to get complicated when nesting containers since we have to be aware
+                    of values other than our base unit. If we're creating helper or utility classes
+                    to use in our markup, we'd probably get some unexpected results - or at least
+                    results that are tricky to predict - depending on usage inside of containers
+                    whose fonts may be scaled up or down.
+                </p>
+
+                <h3>Why Not Pixels?</h3>
+                <p>
+                    Since we're dealing with known increments - multiples of 8px - it'd be easy
+                    enough to just hard-code values for padding, margin, width, height, etc.
+                </p>
+<pre><code>
+.my-div {
+    margin: 24px; /* instead of 1.5rem */
+    padding: 16px; /* instead of 1rem */
+    height: 80px; /* instead of 10rem */
+}
+</code></pre>
+                <p>
+                    If we're using vanilla CSS, we'd have to update these values manually if we
+                    decided to change our grid. When going from an 8px grid to a 10px grid, for
+                    example, we'd have to go through our stylesheets and change every instance of
+                    24px to 30px. If we were using rems, we wouldn't.
+                </p>
+                <p>
+                    Granted, that's not very realistic; grids are meant to provide consistency and
+                    ease when creating layouts and we wouldn't likely change the whole system on a
+                    whim. The pain of manually updating values also disappears if you're
+                    incorporating something like Sass or PostCSS, or taking advantage of
+                    freshly(ish)-implemented pure CSS variables.
+                </p>
+                <p>
+                    Accounting for text resizing - the user's ability to scale font sizes up or down
+                    at the browser level - becomes a bit more difficult to manage with explicit
+                    pixel values, as well, though that's a whole new ball of yarn to unravel and
+                    beyond the scope of this grid demo.
+                </p>
             </section>
         </main>
 

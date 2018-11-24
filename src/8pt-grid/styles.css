@@ -11,7 +11,7 @@ body {
 }
 
 html {
-    font-size: 1emx;
+    font-size: 1em;
 }
 
 body {
@@ -24,12 +24,13 @@ body {
     position: fixed;
     display: flex;
     width: 100%;
-    top: 0;
+    bottom: 0;
     left: 0;
     padding: 1.5rem 1.5rem 1.5rem 4rem;
     z-index: 10;
     background: white;
-    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .toggles button {
@@ -104,45 +105,52 @@ body {
 .show-lineHeight h5,
 .show-lineHeight h6,
 .show-lineHeight p,
-.show-lineHeight li,
 .show-lineHeight blockquote,
-.show-lineHeight cite {
+.show-lineHeight cite,
+.show-lineHeight .lineHeight {
     background: rgba(173, 216, 230, .5);
+}
+
+.lineHeight {
+    display: block;
 }
 
 .container {
     max-width: 52rem;
     position: relative;
-    padding: 9.5rem 4rem 4rem;
+    padding: 4rem 4rem 8rem;
 }
 
+p {
+    font-size: 1rem;
+}
 
 h1, .heading-1 {
-    font-size: 44.8px;
+    font-size: 2.8rem;
     line-height: 3.5rem;
 }
 
 h2, .heading-2 {
     margin-top: 4.5rem;
-    font-size: 38.4px;
+    font-size: 2.4rem;
     line-height: 3rem;
 }
 
 h3, .heading-3 {
     margin-top: 3rem;
-    font-size: 32px;
+    font-size: 2rem;
     line-height: 2.5rem;
 }
 
 h4, .heading-4 {
     margin-top: 3rem;
-    font-size: 25.6px;
+    font-size: 1.6rem;
     line-height: 2rem;
 }
 
-h5, .heading-5 { font-size: 19.2px; }
+h5, .heading-5 { font-size: 1.2rem; }
 
-h6, .heading-6 { font-size: 16px; }
+h6, .heading-6 { font-size: 1rem; }
 
 h1,
 h2,
@@ -156,7 +164,7 @@ p {
 
 ul, ol { padding-left: 2rem; }
 li {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     padding-left: 0.5rem;
 }
 
@@ -169,10 +177,10 @@ cite {
 blockquote {
     font-family: serif;
     line-height: 2rem;
-    font-size: 21.333px;
+    font-size: 1.333rem;
     margin-top: 1.5rem;
     margin-bottom: 1rem;
-    max-width: 560px;
+    max-width: 35rem;
     position: relative;
     border-left: 0.5rem solid #ddd;
 }
@@ -182,6 +190,11 @@ blockquote::after { content: close-quote; }
 
 cite { margin-bottom: 2rem; }
 
+
+/*
+ * ========================================================
+ * Demo-related CSS, not specifically grid-related
+ */
 .flex {
     display: flex;
 }
@@ -190,10 +203,16 @@ cite { margin-bottom: 2rem; }
     position: relative;
     display: flex;
     align-items: center;
-    padding: 3rem 2rem 2rem;
     margin-bottom: 1.5rem;
     margin-right: 1.5rem;
     min-width: 20rem;
+}
+
+.good, .bad { padding: 3rem 2rem 2rem; }
+
+.neutral {
+    background: rgba(205, 205, 128, 0.4);
+    padding: 2rem;
 }
 
 .good { background: rgba(0, 128, 0, .4); }
@@ -202,7 +221,7 @@ cite { margin-bottom: 2rem; }
 .good::after,
 .bad::after {
     display: block;
-    font-size: 12.8px;
+    font-size: 0.8rem;
     font-weight: bold;
     line-height: 1rem;
     position: absolute;
@@ -220,31 +239,16 @@ cite { margin-bottom: 2rem; }
     color: darkred;
 }
 
-.demo-icon {
-    display: block;
-    width: 1.5rem;
-    height: 1.5rem;
-    line-height: 1.5rem;
-    text-align: center;
-    background: black;
-    color: white;
-    font-weight: bold;
-    border-radius: 50%;
-    margin-right: 0.5rem;
-}
-
-.bad .demo-icon {
-    width: 20px;
-    height: 20px;
-    line-height: 20px;
-    margin-right: 15px;
-}
-
 .no-margin {
     margin: 0;
 }
 
+pre {
+    margin: 1.5rem 0;
+    font-size: 0.8rem;
+}
+
 .hljs {
-    margin-bottom: 1.5rem;
-    padding: 1.5rem;
+    margin: 0;
+    padding: 0 1.5rem 1.5rem;
 }
