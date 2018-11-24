@@ -244,12 +244,79 @@ p {
                     incorporating something like Sass or PostCSS, or taking advantage of
                     freshly(ish)-implemented pure CSS variables.
                 </p>
+
+                <h4>Text Resize</h4>
                 <p>
-                    Accounting for text resizing - the user's ability to scale font sizes up or down
-                    at the browser level - becomes a bit more difficult to manage with explicit
-                    pixel values, as well, though that's a whole new ball of yarn to unravel and
-                    beyond the scope of this grid demo.
+                    One other consideration when using hard-coded pixel values is text resizing, the
+                    user's ability to scale font sizes up or down at the browser level. This is
+                    wholly different than zoom; zooming scales <em>everything</em> proportionally.
+                    Text resizing affects only font sizes and has no impact on explicitly defined
+                    heights, widths, or other offsets.
                 </p>
+                <p>
+                    There are a number of reasons why a user might do this: from increasing the font
+                    size because of a visual impairment, to decreasing the font size to fit more
+                    info on the screen, to personal preference.
+                </p>
+                <p>
+                    If we hard-code our grid values in pixels and a user resizes his/her text, the
+                    whole grid breaks. If we use relative units, our grid will still work. It'll
+                    simply inherit from the user's base font size. Our meticulously crafted spacing,
+                    vertical rhythm, and general layout will still be in place ... albeit at some
+                    other pixel scale.
+                </p>
+                <p>
+                    Compare the two text blocks below. The first is coded using explicit pixel
+                    values and the second is using relative units. Scale the text up or down in your
+                    browser - again, not zoom! - to check out the difference.
+                </p>
+<pre><code class="css">
+.textBlock-1 p {
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 24px;
+}
+
+.textBlock-2 p {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+</code></pre>
+                <div class="flex">
+                    <div class="demo-block bad">
+                        <div style="padding:16px;background:white;">
+                            <p style="font-size:16px;line-height:24px;margin-bottom:24px">
+                                This is a line of text; it's a simple paragraph tag.
+                            </p>
+                            <p style="font-size:16px;line-height:24px;margin-bottom:24px">
+                                Here's another chunk of text, again in a simple paragraph tag but
+                                with longer lines that wrap and naturally flow. By default it
+                                should look just like the other one.
+                            </p>
+                            <p style="font-size:16px;line-height:24px;margin-bottom:24px">
+                                Upon resizing text in your browser, however, the differences start
+                                to show up. Especially in the padding and margins.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="demo-block good">
+                        <div style="padding:1rem;background:white;">
+                            <p style="font-size:1rem;line-height:1.5rem;margin-bottom:1.5rem">
+                                This is a line of text; it's a simple paragraph tag.
+                            </p>
+                            <p style="font-size:1rem;line-height:1.5rem;margin-bottom:1.5rem">
+                                Here's another chunk of text, again in a simple paragraph tag but
+                                with longer lines that wrap and naturally flow. By default, it
+                                should look just like the other one.
+                            </p>
+                            <p style="font-size:1rem;line-height:1.5rem;margin-bottom:1.5rem">
+                                Upon resizing text in your browser, however, the differences start
+                                to show up. Especially in the padding and margins.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </section>
         </main>
 
