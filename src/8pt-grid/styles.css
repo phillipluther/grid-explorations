@@ -250,3 +250,8 @@ pre {
     margin: 0;
     padding: 0 1.5rem 1.5rem;
 }
+
+.fluidity-demo {
+    width: 33.333%;
+    height: 10rem;
+}
